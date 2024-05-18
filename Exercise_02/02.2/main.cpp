@@ -101,9 +101,6 @@ int main(int argc, char** argv){
         fmt::print("{}\n", s+1);
 
     }
-
-
-
     
     fmt::print("\n");
     
