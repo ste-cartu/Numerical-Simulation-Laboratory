@@ -26,15 +26,7 @@ int main(int argc, char** argv) {
     double sum_unif = 0, sum_expo = 0, sum_calo = 0;
     double r_unif, r_expo, r_calo;
 
-    // output files fmt
-    //auto out_unif = fmt::output_file("uniform.csv");
-    //auto out_expo = fmt::output_file("exponential.csv");
-    //auto out_calo = fmt::output_file("cauchy-lorentz.csv");
-    //out_unif.print("sums length,extraction,value\n");
-    //out_expo.print("sums length,extraction,value\n");
-    //out_calo.print("sums length,extraction,value\n");
-
-    // output files fstream
+    // output files
     std::ofstream out_unif("uniform.csv");
     std::ofstream out_expo("exponential.csv");
     std::ofstream out_calo("cauchy-lorentz.csv");
@@ -55,10 +47,6 @@ int main(int argc, char** argv) {
                 sum_expo += r_expo;
                 sum_calo += r_calo;
             }
-
-            //fmt::print(out_unif, "{0},{1},{2}\n", len[l], i+1, sum_unif/len[l]);
-            //out_expo.print("{0},{1},{2}\n", len[l], i+1, sum_expo/len[l]);
-            //out_calo.print("{0},{1},{2}\n", len[l], i+1, sum_calo/len[l]);
 
             out_unif << len[l] << "," << i+1 << "," << sum_unif/len[l] << std::endl;
             out_expo << len[l] << "," << i+1 << "," << sum_expo/len[l] << std::endl;
