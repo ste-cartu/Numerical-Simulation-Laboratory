@@ -24,13 +24,13 @@ protected:
 public:
   // Default constructor
   Random();
-  Random(const std::string);
+  Random(const std::string path);
   // Destructor
   ~Random();
   // Method to set the seed for the RNG
   void SetRandom(int * , int, int);
   // Method to save the seed to a file
-  void SaveSeed();
+  void SaveSeed(const std::string path = "./");
   // Method to generate a random number in the range [0,1)
   double Rannyu(void);
   // Method to generate a random number in the range [min,max)
