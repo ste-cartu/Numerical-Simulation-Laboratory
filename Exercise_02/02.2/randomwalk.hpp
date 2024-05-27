@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Libraries/classes.hpp"
+#include "../../Libraries/blockaverage.hpp"
 
 
 /*––––––––––––––––––––––––––––––– RANDOM WALK –––––––––––––––––––––––––––––––*/

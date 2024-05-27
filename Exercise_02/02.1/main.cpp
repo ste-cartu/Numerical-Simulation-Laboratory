@@ -1,9 +1,9 @@
 #include <fstream>
 #include <cmath>
 
-#include "../../Libraries/fmtlib.h"
+#include "../../Libraries/fmtlib.hpp"
 #include "../../Libraries/RandomGen/random.hpp"
-#include "../../Libraries/classes.hpp"
+#include "../../Libraries/blockaverage.hpp"
 
 using namespace std;
 

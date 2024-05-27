@@ -2,9 +2,9 @@
 #include <vector>
 #include <cmath>
 
-#include "../../Libraries/fmtlib.h"
+#include "../../Libraries/fmtlib.hpp"
 #include "../../Libraries/RandomGen/random.hpp"
-#include "classes.hpp"
+#include "randomwalk.hpp"
 
 using namespace std;
 
@@ -98,7 +98,7 @@ int main(int argc, char** argv){
         cont_block_dist = 0, cont_block_dist2 = 0;
         cont_prog_dist = 0, cont_prog_dist2 = 0;
 
-        fmt::print("{}\n", s+1);
+        Progress_Bar(s+1, steps);
 
     }
     

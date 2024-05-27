@@ -4,17 +4,17 @@ LIB = ../../Libraries/
 RND = ../../Libraries/RandomGen/
 
 
-main : $(RND)random.o classes.o $(LIB)library.o main.o
-	$(CC) $(CFLAGS) $(RND)random.o classes.o $(LIB)library.o main.o -o main
+main : $(RND)random.o randomwalk.o $(LIB)library.o main.o
+	$(CC) $(CFLAGS) $(RND)random.o randomwalk.o $(LIB)library.o main.o -o main
 
-main.o : main.cpp $(RND)random.hpp $(LIB)classes.hpp $(LIB)library.hpp $(LIB)fmtlib.h
+main.o : main.cpp $(RND)random.hpp $(LIB)blockaverage.hpp $(LIB)library.hpp $(LIB)fmtlib.hpp
 	$(CC) $(CFLAGS) -c main.cpp -o main.o
 
 $(RND)random.o : $(RND)random.hpp $(RND)random.cpp
 	$(CC) $(CFLAGS) -c $(RND)random.cpp -o $(RND)random.o
 
-classes.o : $(LIB)classes.hpp classes.hpp classes.cpp $(LIB)library.hpp
-	$(CC) $(CFLAGS) -c classes.cpp -o classes.o
+randomwalk.o : $(LIB)blockaverage.hpp randomwalk.hpp randomwalk.cpp $(LIB)library.hpp
+	$(CC) $(CFLAGS) -c randomwalk.cpp -o randomwalk.o
 
 $(LIB)library.o : $(LIB)library.cpp $(LIB)library.hpp
 	$(CC) $(CFLAGS) -c $(LIB)library.cpp -o $(LIB)library.o

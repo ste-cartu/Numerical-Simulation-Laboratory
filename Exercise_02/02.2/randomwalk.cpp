@@ -1,4 +1,4 @@
-#include "classes.hpp"
+#include "randomwalk.hpp"
 
 
 /*––––––––––––––––––––––––––––––– RANDOM WALK –––––––––––––––––––––––––––––––*/
