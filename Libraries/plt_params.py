@@ -12,6 +12,7 @@ plt.rcParams.update({
     'font.family': 'cmr10',
     'mathtext.fontset': 'cm',
     'axes.formatter.use_mathtext': True,
+    'figure.titlesize' : size,
 
     # assi
     'axes.labelsize': size,

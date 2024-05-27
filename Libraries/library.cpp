@@ -28,5 +28,20 @@ double Importance_Inverse(double x) {return std::sqrt(1-x) + 1;}
 double Call_Profit(double S, double K) {return std::max(0., S - K);}
 
 
-
 double Put_Profit(double S, double K) {return std::max(0., K - S);}
+
+
+void Progress_Bar(int progress, int total, int bar_width) {
+
+    float percentage = static_cast<float>(progress) / total;
+    int pos = static_cast<int>(bar_width * percentage);
+
+    std::string bar;
+    for (int i = 0; i < bar_width; ++i) {
+        if (i <= pos) bar += "◼︎";
+        else bar += " ";
+    }
+
+    fmt::print("|{}| {:3d} %\r", bar, int(percentage * 100.0));
+    std::fflush(stdout);
+}

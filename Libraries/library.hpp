@@ -3,6 +3,8 @@
 #include <cmath>
 #include <algorithm>
 
+#include "fmtlib.hpp"
+
 
 // error: mean standard deviation: sqrt[(<x^2> - <x>^2) / (n-1)]
 // used in: 01.1
@@ -47,3 +49,8 @@ double Call_Profit(double S, double K);
 // put option profit
 // used in 03.1
 double Put_Profit(double S, double K);
+
+
+// showing a progress bar
+// used in 04.1
+void Progress_Bar(int progress, int total, int bar_width = 50);
