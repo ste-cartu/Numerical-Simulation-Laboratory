@@ -7,7 +7,7 @@
 #include "../../Libraries/fmtlib.h"
 #include "../../Libraries/RandomGen/random.hpp"
 #include "../../Libraries/library.hpp"
-#include "../../Libraries/classes.hpp"
+#include "../../Libraries/blockaverage.hpp"
 
 using namespace std;
 

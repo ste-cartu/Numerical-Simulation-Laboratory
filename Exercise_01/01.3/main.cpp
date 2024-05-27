@@ -4,7 +4,7 @@
 #include "../../Libraries/fmtlib.h"
 #include "../../Libraries/library.hpp"
 #include "../../Libraries/RandomGen/random.hpp"
-#include "../../Libraries/classes.hpp"
+#include "../../Libraries/blockaverage.hpp"
 
 
 
