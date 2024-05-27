@@ -7,7 +7,7 @@ RND = ../../Libraries/RandomGen/
 main : main.o $(RND)random.o $(LIB)library.o
 	$(CC) $(CFLAGS) $(RND)random.o $(LIB)library.o main.o -o main
 
-main.o : main.cpp $(RND)random.hpp $(LIB)library.hpp $(LIB)fmtlib.h
+main.o : main.cpp $(RND)random.hpp $(LIB)library.hpp $(LIB)fmtlib.hpp
 	$(CC) $(CFLAGS) -c main.cpp -o main.o
 
 $(RND)random.o : $(RND)random.cpp $(RND)random.hpp

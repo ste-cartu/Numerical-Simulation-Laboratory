@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "../../Libraries/fmtlib.h"
+#include "../../Libraries/fmtlib.hpp"
 #include "../../Libraries/library.hpp"
 #include "../../Libraries/RandomGen/random.hpp"
 

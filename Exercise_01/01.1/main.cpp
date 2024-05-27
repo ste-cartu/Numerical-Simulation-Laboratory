@@ -128,7 +128,6 @@ int main(int argc, char** argv){
 
 
 
-
 // computing the progressive mean with vectors
 /*
 int main(int argc, char** argv){
