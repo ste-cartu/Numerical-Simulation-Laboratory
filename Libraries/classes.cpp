@@ -108,7 +108,6 @@ double BA_Option :: Increase() {
             price *= std::exp( (drift_ - 0.5*std::pow(volatility_,2))*dt + volatility_*rnd_.Gauss(0.,1.)*std::sqrt(dt));
         }
         val += std::exp(-drift_*stop_) * Profit_(price, strike_);
-        //val += std::exp(-drift_*stop_) * std::max(0., price - strike_);
         price = initial_;
     }
 
