@@ -4,7 +4,7 @@
 
 #include "../../Libraries/fmtlib.hpp"
 #include "../../Libraries/RandomGen/random.hpp"
-#include "randomwalk.hpp"
+#include "../../Libraries/randomwalk.hpp"
 
 using namespace std;
 
@@ -102,7 +102,7 @@ int main(int argc, char** argv){
 
     }
     
-    fmt::print("\n");
+    fmt::print("\n\n");
     
     return 0;
 }
