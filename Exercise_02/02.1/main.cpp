@@ -10,8 +10,6 @@ using namespace std;
 
 int main(int argc, char** argv){
 
-    fmt::print("\n");
-
     // initial check
     cout << endl;
     if (argc != 3) {
@@ -57,7 +55,7 @@ int main(int argc, char** argv){
     out.close();
 
 
-    fmt::print("\n");
+    fmt::print("\n\n");
     
     return 0;
 }

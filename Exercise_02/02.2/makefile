@@ -1,11 +1,12 @@
 CC = g++ 
 CFLAGS = -Wall -std=c++20 -O3
+AFLAGS = -larmadillo -rpath /opt/homebrew/Cellar/armadillo-12.8.3
 LIB = ../../Libraries/
 RND = ../../Libraries/RandomGen/
 
 
 main : $(RND)random.o $(LIB)randomwalk.o $(LIB)library.o main.o
-	$(CC) $(CFLAGS) $(RND)random.o $(LIB)randomwalk.o $(LIB)library.o main.o -o main
+	$(CC) $(CFLAGS) $(AFLAGS) $(RND)random.o $(LIB)randomwalk.o $(LIB)library.o main.o -o main
 
 main.o : main.cpp $(RND)random.hpp $(LIB)blockaverage.hpp $(LIB)library.hpp $(LIB)fmtlib.hpp
 	$(CC) $(CFLAGS) -c main.cpp -o main.o
@@ -21,7 +22,7 @@ $(LIB)library.o : $(LIB)library.cpp $(LIB)library.hpp
 
 
 exe :
-	./main 1 1e4 1e6 1e2
+	./main 1 1e3 1e5 1e2
 clean :
 	rm *.o $(RND)*.o $(LIB)*.o
 cleanall :
