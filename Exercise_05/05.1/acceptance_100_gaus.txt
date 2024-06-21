@@ -1,0 +1,11 @@
+Target: 0.5	Precision: 0.001
+
+1)  Step: 1	Acceptance: 0.398758
+2)  Step: 0.5	Acceptance: 0.640099
+3)  Step: 0.75	Acceptance: 0.504745
+4)  Step: 0.875	Acceptance: 0.448027
+5)  Step: 0.8125	Acceptance: 0.476168
+6)  Step: 0.78125	Acceptance: 0.489948
+7)  Step: 0.765625	Acceptance: 0.497246
+8)  Step: 0.757812	Acceptance: 0.501275
+9)  Step: 0.761719	Acceptance: 0.500972
