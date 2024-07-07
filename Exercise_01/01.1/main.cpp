@@ -104,21 +104,25 @@ int main(int argc, char** argv){
     // 2ND METHOD: using classes
     /*–––––––––––––––––––––––––––––––––– PART 1 ––––––––––––––––––––––––––––––––––*/
 
+    fmt::print("Computing mean\n");
     BA_Mean mea(m,n);
     out.open("mean.csv");
     out << "blocks,extractions,mean,error" << endl;
     mea.Progressive(out);
     out.close();
+    fmt::print("\n\n");
 
 
 
     /*–––––––––––––––––––––––––––––––––– PART 2 ––––––––––––––––––––––––––––––––––*/
 
+    fmt::print("Computing variance\n");
     BA_Variance var(m,n);
     out.open("variance.csv");
     out << "blocks,extractions,mean,error" << endl;
     var.Progressive(out);
-    out.close();    
+    out.close();
+    fmt::print("\n\n");
 
 
 

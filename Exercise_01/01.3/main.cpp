@@ -40,9 +40,11 @@ int main(int argc, char** argv){
     std::ofstream out("pi.csv");
     out << "blocks,extractions,value of pi,error" << std::endl;
 
+    fmt::print("Computing the value of 𝜋\n");
     BA_Buffon buff(l, d, throws, blocks);
     buff.Progressive(out);
     out.close();
+    fmt::print("\n\n");
     
 
 

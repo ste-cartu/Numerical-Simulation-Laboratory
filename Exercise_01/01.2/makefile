@@ -20,7 +20,5 @@ $(LIB)library.o : $(LIB)library.cpp $(LIB)library.hpp
 exe :
 	./main 1e4
 clean :
-	rm *.o $(RND)*.o $(LIB)*.o
-cleanall :
-	rm *.o $(RND)*.o $(LIB)*.o main
+	rm *.o main $(RND)*.o $(LIB)*.o
 all : main exe
