@@ -1,4 +1,4 @@
-CC = g++ 
+CC = g++
 CFLAGS = -Wall -std=c++20 -O3
 AFLAGS = -larmadillo -rpath /opt/homebrew/Cellar/armadillo-12.8.3
 LIB = ../../Libraries/
