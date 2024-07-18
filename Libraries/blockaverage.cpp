@@ -5,7 +5,7 @@
 
 /*––––––––––––––––––––––––––––––– BLOCKING AVERAGE –––––––––––––––––––––––––––––––*/
 
-void BlockingAverage :: Progressive(std::ofstream& out) {
+void BlockingAverage :: Progressive(std::ofstream& out, bool progress) {
     
     double val, val2;
     double sum = 0, sum2 = 0;
@@ -13,6 +13,7 @@ void BlockingAverage :: Progressive(std::ofstream& out) {
     double err;
 
     for (int i=0 ; i<blocks_ ; i++) {
+        if(progress) Progress_Bar(i+1, blocks_);
         val = Increase();
         val2 = val*val;
 
@@ -24,6 +25,10 @@ void BlockingAverage :: Progressive(std::ofstream& out) {
         err = Error(prog_val, prog_val2, i);
         out << (i+1) << "," << (i+1)*dim_ << "," << prog_val << "," << err << std::endl;
     }
+
+    average_ = prog_val;
+    error_ = err;
+    rnd_.SaveSeed();
 
 }
 
@@ -77,11 +82,11 @@ double BA_Buffon :: Increase() {
 
 double BA_Integral :: Increase() {
 
-    double val = 0;
+    double val = 0.;
     for(int i=0 ; i<dim_ ; i++) {
         double u = rnd_.Rannyu();
-        double x = Inv_(u);
-        val += f_(x)/Sampl_(x);
+        arma::vec x = {Inv_(u)};
+        val += f_(x)/Sampl_(x[0]);
     }
 
     return val/dim_;
@@ -100,7 +105,7 @@ void BA_Option :: SetSampling(double tinit, double tfin, unsigned int nstep) {
 
 double BA_Option :: Increase() {
     
-    double val = 0, price = initial_;
+    double val = 0., price = initial_;
     double dt = static_cast<double>(stop_ - start_)/nstep_;
 
     for(int i=0 ; i<dim_ ; i++) {
@@ -116,4 +121,63 @@ double BA_Option :: Increase() {
 }
 
 
+double BA_Metro :: Increase() {
+    double val = 0.;
+    if(save_) {
+        std::ofstream out("sampling.csv", std::ios::app);
+        for(int i=0 ; i<dim_ ; i++) {
+            metro_.Propose();
+            if(metro_.Accept()) {
+                arma::vec v = metro_.GetPoint();
+                out << v[0] << "," << v[1] << "," << v[2] << std::endl;
+            }
+            val += metro_.Distance();
+        }
+        out.close();
+    }
+    else {
+        for(int i=0 ; i<dim_ ; i++) {
+            metro_.Propose();
+            metro_.Accept();
+            val += metro_.Distance();
+        }
+    }
+    return val/dim_;
+}
 
+
+void BA_Metro :: Reset(int type, bool answer) {
+    metro_.SetSampling(type);
+    save_ = answer;
+}
+
+
+void BA_Metro :: Reset(int type) {
+    metro_.SetSampling(type);
+}
+
+
+double BA_SimAnn :: Increase() {
+    double val = 0.;
+    if(save_) {
+        std::ofstream out("sampling.csv", std::ios::app);
+        for(int i=0 ; i<dim_ ; i++) {
+            metro_.Propose();
+            metro_.Accept();
+            arma::vec x = metro_.GetPoint();
+            out << i+1 << "," << x[0] << std::endl;
+            val += H_(x);
+        }
+        out.close();
+    }
+    else {
+        for(int i=0 ; i<dim_ ; i++) {
+            metro_.Propose();
+            metro_.Accept();
+            arma::vec x = metro_.GetPoint();
+            val += H_(x);
+        }
+    }
+
+    return val/dim_;
+}

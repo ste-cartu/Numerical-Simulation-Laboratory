@@ -1,6 +1,7 @@
 #pragma once
 
 #include "blockaverage.hpp"
+#include <armadillo>
 
 
 /*––––––––––––––––––––––––––––––– RANDOM WALK –––––––––––––––––––––––––––––––*/
@@ -9,11 +10,19 @@
 class Walker {
 
     public:
-        Walker(double step=1, double x=0, double y=0, double z=0) : rnd_("../../Libraries/RandomGen/") {
+        Walker(double step=1, int dim=3, double x=0, double y=0, double z=0) : rnd_("../../Libraries/RandomGen/") {
             step_ = step;
-            x_ = x;
-            y_ = y;
-            z_ = z;
+            dim_ = dim;
+            pos_.resize(dim_);
+            oldpos_.resize(dim_);
+
+            pos_[0] = x;
+            pos_[1] = y;
+            pos_[2] = z;
+
+            oldpos_[0] = x;
+            oldpos_[1] = y;
+            oldpos_[2] = z;
         }
         ~Walker() {;}
         void Discrete_Step();
@@ -21,13 +30,15 @@ class Walker {
         void Continue_Step();
         void Continue_Step(double the, double phi);
         double Distance2(double x0 = 0, double y0 = 0, double z0 = 0);
-        double X() {return x_;}
-        double Y() {return y_;}
-        double Z() {return z_;}
+        double X() {return pos_[0];}
+        double Y() {return pos_[1];}
+        double Z() {return pos_[2];}
 
     private:
         double step_;
-        double x_ = 0, y_ = 0, z_ = 0;
+        int dim_;
+        arma::vec pos_;
+        arma::vec oldpos_;
         Random rnd_;
 
 };

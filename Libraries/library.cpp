@@ -35,13 +35,16 @@ void Progress_Bar(int progress, int total, int bar_width) {
 
     float percentage = static_cast<float>(progress) / total;
     int pos = static_cast<int>(bar_width * percentage);
+    const std::string LILIAC = "\033[38;5;141m";
+    const std::string RESET = "\033[0m";
 
     std::string bar;
     for (int i = 0; i < bar_width; ++i) {
-        if (i <= pos) bar += "◼︎";
+        if (i < pos) bar += "◼︎";
         else bar += " ";
     }
 
-    fmt::print("|{}| {:3d} %\r", bar, int(percentage * 100.0));
+    std::string output = fmt::format("{}|{}| {:3d} %\r{}", LILIAC, bar, int(percentage * 100.0), RESET);
+    fmt::print("{}", output);
     std::fflush(stdout);
 }

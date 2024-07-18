@@ -52,5 +52,4 @@ double Put_Profit(double S, double K);
 
 
 // showing a progress bar
-// used in 02.2, 04.1, 04.2
 void Progress_Bar(int progress, int total, int bar_width = 50);

@@ -21,14 +21,15 @@ using namespace std;
 Random :: Random(){}
 // Default constructor, does not perform any action
 
-Random :: Random(const string path){
+Random :: Random(const string path, int rank){
    int seed[4];
    int p1, p2;
 
    ifstream Primes(path + "Primes");
    if (Primes.is_open()){
-      Primes >> p1 >> p2 ;
-   } else cerr << "PROBLEM: Unable to open Primes" << endl;
+      for(int i=0 ; i<rank ; i++) {Primes >> p1 >> p2;}
+      Primes >> p1 >> p2;
+   } else cerr << "PROBLEM: Unable to open primes64001.in" << endl;
    Primes.close();
 
    ifstream input(path + "seed.in");
@@ -50,12 +51,12 @@ Random :: Random(const string path){
 Random :: ~Random(){}
 // Default destructor, does not perform any action
 
-void Random :: SaveSeed(const string path){
+void Random :: SaveSeed(const string path, int rank){
    // This function saves the current state of the random number generator to a file "seed.out"
    ofstream WriteSeed;
    WriteSeed.open(path + "seed.out");
    if (WriteSeed.is_open()){
-      WriteSeed << "RANDOMSEED	" << l1 << " " << l2 << " " << l3 << " " << l4 << endl;;
+      WriteSeed << "RANK " << rank << "   RANDOMSEED	" << l1 << " " << l2 << " " << l3 << " " << l4 << endl;;
    } else cerr << "PROBLEM: Unable to open seed.out" << endl;
   WriteSeed.close();
   return;

@@ -65,9 +65,7 @@ private:
   vec _measurement;      // Measured values of properties
 
 public: // Function declarations
-  int get_nbl();      // Get the number of blocks
-  int get_nsteps();   // Get the number of steps in each block
-  void initialize(const string path = "../");             // Initialize system properties
+  void initialize(const string path = "../", const string rnd_path = "../../Libraries/RandomGen/");    // Initialize system properties
   void initialize_properties(const string path = "../");  // Initialize properties for measurement
   void finalize(const string path = "../");               // Finalize system and clean up
   void write_configuration(const string path = "../");    // Write final system configuration to XYZ file
@@ -78,9 +76,13 @@ public: // Function declarations
   void step();                // Perform a simulation step
   void block_reset(int blk, const string path = "../");   // Reset block averages
   void measure();             // Measure properties of the system
-  void averages(int blk, const string path = "../");      // Compute averages of properties
-  void equilibration(const string path);         // Equilibrates the system
-  double error(double acc, double acc2, int blk);         // Compute error
+  void averages(int blk, const string path = "../");                // Compute averages of properties
+  void instantaneous(int extr, const string path = "../");          // Prints istantaneous values of properties
+  void equilibration(const string path);       // Equilibrates the system
+  void rename_files(const string oldpath, const string newpath);    // Renames the output files
+  double error(double acc, double acc2, int blk);                   // Compute error
+  void set_delta(double delta, int nstep, ofstream& out);           // Set _delta value for acceptance
+  double set_acceptance(double target, double prec, int nstep, ofstream& out, const string path = "../"); // Set Metropolis acceptance
   void move(int part);                  // Move a particle
   bool metro(int part);                 // Perform Metropolis acceptance-rejection step
   double pbc(double position, int i);   // Apply periodic boundary conditions for coordinates
@@ -88,6 +90,11 @@ public: // Function declarations
   void Verlet();                        // Perform Verlet integration step
   double Force(int i, int dim);         // Calculate force on a particle along a dimension
   double Boltzmann(int i, bool xnew);   // Calculate Boltzmann factor for Metropolis acceptance
+  int get_nbl();        // Get the number of blocks
+  int get_nsteps();     // Get the number of steps in each block
+  double get_vtail();   // Get the potential tail correction
+  double get_ptail();   // Get the pressure tail correction
+  int get_sim_type();   // Get the simulation type
 
 };
 
