@@ -11,7 +11,6 @@ int main() {
     unsigned int blocks = static_cast<unsigned int>(5e2);
     int unif = 0, gaus = 1;
 
-    // equilibration
     double step_100 = 1., step_210 = 5.;
     double target = 0.5, prec = 0.001;
 
@@ -21,8 +20,6 @@ int main() {
     arma::vec x_210 = {5,0,0};
     Metropolis metro_100(step_100, unif, prob_100, x_100);
     Metropolis metro_210(step_210, unif, prob_210, x_210);
-    //std::shared_ptr<Metropolis> metro_100 = std::make_shared<Metropolis>(step_100, unif, prob_100);
-    //std::shared_ptr<Metropolis> metro_210 = std::make_shared<Metropolis>(step_210, unif, prob_210);
 
 
     /*––––––––––––––––––––––––––––––– GROUND STATE - UNIFORM SAMPLING –––––––––––––––––––––––––––––––*/
@@ -46,8 +43,6 @@ int main() {
     std::ofstream sampl("sampling.csv");
     sampl << "x,y,z" << std::endl;
     BA_Metro radius_100_unif(extr, blocks, metro_100, true);
-    // radius_100_unif.Equilib(extr);
-    // fmt::print("\n");
     radius_100_unif.Progressive(out);
     out.close();
 
@@ -60,7 +55,7 @@ int main() {
     fmt::print("\n\nGROUND STATE - GAUSSIAN SAMPLING\n");
     out.open("acceptance_100_gaus.txt");
     out << "Target: " << target << "\tPrecision: " << prec << std::endl << std::endl;
-    metro_100.Reset(step_100, gaus);
+    metro_100.Reset(step_100, gaus, x_100);
     metro_100.SetAcceptance(target, prec, step_100, nstep, &out);
     out.close();
 
@@ -76,8 +71,6 @@ int main() {
     out << "blocks,extractions,radius,error" << std::endl;
     sampl.open("sampling.csv");
     sampl << "x,y,z" << std::endl;
-    // radius_100_gaus.Equilib(extr);
-    // fmt::print("\n");
     BA_Metro radius_100_gaus(extr, blocks, metro_100, true);
     radius_100_gaus.Progressive(out);
     out.close();
@@ -121,7 +114,7 @@ int main() {
     fmt::print("\n\nEXCITED STATE - GAUSSIAN SAMPLING\n");
     out.open("acceptance_210_gaus.txt");
     out << "Target: " << target << "\tPrecision: " << prec << std::endl << std::endl;
-    metro_210.Reset(step_210, gaus);
+    metro_210.Reset(step_210, gaus, x_210);
     metro_210.SetAcceptance(target, prec, step_210, nstep, &out);
     out.close();
 
@@ -137,8 +130,6 @@ int main() {
     out << "blocks,extractions,radius,error" << std::endl;
     sampl.open("sampling.csv");
     sampl << "x,y,z" << std::endl;
-    // radius_210_gaus.Equilib(extr);
-    // fmt::print("\n");
     BA_Metro radius_210_gaus(extr, blocks, metro_210, true);
     radius_210_gaus.Progressive(out);
     out.close();
