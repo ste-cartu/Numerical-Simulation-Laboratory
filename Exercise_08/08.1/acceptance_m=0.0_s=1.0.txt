@@ -1,0 +1,8 @@
+1) Step: 1.00000	Acceptance: 0.712
+2) Step: 1.50000	Acceptance: 0.606
+3) Step: 1.75000	Acceptance: 0.559
+4) Step: 1.87500	Acceptance: 0.537
+5) Step: 1.93750	Acceptance: 0.549
+6) Step: 1.96875	Acceptance: 0.512
+7) Step: 1.98438	Acceptance: 0.513
+8) Step: 1.99219	Acceptance: 0.500
