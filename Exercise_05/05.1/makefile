@@ -1,4 +1,4 @@
-CC = g++ 
+CC = g++
 CFLAGS = -Wall -std=c++20 -O3
 AFLAGS = -larmadillo -rpath /opt/homebrew/Cellar/armadillo-12.8.3
 LIB = ../../Libraries/
@@ -28,7 +28,5 @@ $(LIB)library.o : $(LIB)library.cpp $(LIB)library.hpp $(LIB)fmtlib.hpp
 exe :
 	./main
 clean :
-	rm *.o $(RND)*.o $(LIB)*.o
-cleanall :
 	rm *.o $(RND)*.o $(LIB)*.o main
 all : main exe

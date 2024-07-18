@@ -1,15 +1,12 @@
 Target: 0.5	Precision: 0.001
 
-1)  Step: 5	Acceptance: 0.111593
-2)  Step: 2.5	Acceptance: 0.295791
-3)  Step: 1.25	Acceptance: 0.544052
-4)  Step: 1.875	Acceptance: 0.398216
-5)  Step: 1.5625	Acceptance: 0.463436
-6)  Step: 1.40625	Acceptance: 0.503313
-7)  Step: 1.48438	Acceptance: 0.482864
-8)  Step: 1.44531	Acceptance: 0.492779
-9)  Step: 1.42578	Acceptance: 0.496491
-10)  Step: 1.41602	Acceptance: 0.49821
-11)  Step: 1.41113	Acceptance: 0.501015
-12)  Step: 1.41357	Acceptance: 0.49863
-13)  Step: 1.41235	Acceptance: 0.500525
+1) Step: 5.00000	Acceptance: 0.112
+2) Step: 2.50000	Acceptance: 0.307
+3) Step: 1.25000	Acceptance: 0.572
+4) Step: 1.87500	Acceptance: 0.459
+5) Step: 1.56250	Acceptance: 0.511
+6) Step: 1.71875	Acceptance: 0.482
+7) Step: 1.64062	Acceptance: 0.495
+8) Step: 1.60156	Acceptance: 0.506
+9) Step: 1.62109	Acceptance: 0.501
+10) Step: 1.63086	Acceptance: 0.500

@@ -30,7 +30,7 @@ int main() {
     fmt::print("\nGROUND STATE - UNIFORM SAMPLING\n");
     std::ofstream out("acceptance_100_unif.txt");
     out << "Target: " << target << "\tPrecision: " << prec << std::endl << std::endl;
-    double step_100_unif = metro_100.SetAcceptance(target, prec, step_100, nstep, out);
+    double step_100_unif = metro_100.SetAcceptance(target, prec, step_100, nstep, &out);
     out.close();
 
     // equilibration
@@ -61,7 +61,7 @@ int main() {
     out.open("acceptance_100_gaus.txt");
     out << "Target: " << target << "\tPrecision: " << prec << std::endl << std::endl;
     metro_100.Reset(step_100, gaus);
-    metro_100.SetAcceptance(target, prec, step_100, nstep, out);
+    metro_100.SetAcceptance(target, prec, step_100, nstep, &out);
     out.close();
 
     // equilibration
@@ -91,7 +91,7 @@ int main() {
     fmt::print("\n\nEXCITED STATE - UNIFORM SAMPLING\n");
     out.open("acceptance_210_unif.txt");
     out << "Target: " << target << "\tPrecision: " << prec << std::endl << std::endl;
-    double step_210_unif = metro_210.SetAcceptance(target, prec, step_210, nstep, out);
+    double step_210_unif = metro_210.SetAcceptance(target, prec, step_210, nstep, &out);
     out.close();
 
     // equilibration
@@ -122,7 +122,7 @@ int main() {
     out.open("acceptance_210_gaus.txt");
     out << "Target: " << target << "\tPrecision: " << prec << std::endl << std::endl;
     metro_210.Reset(step_210, gaus);
-    metro_210.SetAcceptance(target, prec, step_210, nstep, out);
+    metro_210.SetAcceptance(target, prec, step_210, nstep, &out);
     out.close();
 
     // equilibration
