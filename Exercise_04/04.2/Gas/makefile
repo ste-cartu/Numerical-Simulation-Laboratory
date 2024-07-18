@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -O3 --std=c++20
+CFLAGS = -Wall -O3 --std=c++20
 AFLAGS = -larmadillo -rpath /opt/homebrew/Cellar/armadillo-12.8.3
 SIM = ../../../Libraries/Simulator/SOURCE/
 RND = ../../../Libraries/RandomGen/
@@ -9,6 +9,8 @@ S = Simulation/
 
 
 gas : $(E)gas_eq $(S)gas_sim
+eq : $(E)gas_eq
+sim : $(S)gas_sim
 
 
 $(E)gas_eq : $(SIM)system.o $(SIM)particle.o $(RND)random.o $(LIB)library.o $(E)gas_eq.o
@@ -42,9 +44,7 @@ doeq : $(E)gas_eq
 dosim : $(S)gas_sim
 	./$(S)gas_sim
 clean :
-	rm $(E)*.o $(S)*.o $(SIM)*.o $(RND)*.o
-cleanall :
-	rm $(SIM)*.o $(RND)*.o $(E)*.o $(S)*.o $(E)gas_eq $(S)gas_sim
+	rm $(E)*.o $(S)*.o $(SIM)*.o $(RND)*.o $(E)gas_eq $(S)gas_sim
 rmeq :
 	rm $(E)OUTPUT/*.*
 	rm $(E)OUTPUT/CONFIG/*.*

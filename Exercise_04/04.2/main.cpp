@@ -4,6 +4,7 @@
 #include "../../Libraries/library.hpp"
 #include "../../Libraries/fmtlib.hpp"
 
+
 int main(int argc, char* argv[]) {
 
     if(argc != 2) {
@@ -17,7 +18,6 @@ int main(int argc, char* argv[]) {
     SYS.initialize_properties(path);
 
     SYS.equilibration(path);
-    SYS.initialize_properties(path);
 
     fmt::print("\nSIMULATION\n");
     int blocks = SYS.get_nbl();

@@ -29,8 +29,6 @@ exe :
 	./main
 all : main exe
 clean :
-	rm *.o $(SIM)*.o $(RND)*.o
-cleanall :
 	rm *.o $(SIM)*.o $(RND)*.o main
 remove :
 	rm OUTPUT/*.*

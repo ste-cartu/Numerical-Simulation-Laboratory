@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -O3 --std=c++20
+CFLAGS = -Wall -O3 --std=c++20
 AFLAGS = -larmadillo -rpath /opt/homebrew/Cellar/armadillo-12.8.3
 SIM = ../../../Libraries/Simulator/SOURCE/
 RND = ../../../Libraries/RandomGen/
@@ -44,9 +44,7 @@ doeq : $(E)solid_eq
 dosim : $(S)solid_sim
 	./$(S)solid_sim
 clean :
-	rm $(E)*.o $(S)*.o $(SIM)*.o $(RND)*.o
-cleanall :
-	rm $(SIM)*.o $(RND)*.o $(E)*.o $(S)*.o $(E)solid_eq $(S)solid_sim
+	rm $(E)*.o $(S)*.o $(SIM)*.o $(RND)*.o $(E)solid_eq $(S)solid_sim
 rmeq :
 	rm $(E)OUTPUT/*.*
 	rm $(E)OUTPUT/CONFIG/*.*

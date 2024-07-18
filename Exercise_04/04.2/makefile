@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -O3 --std=c++20
+CFLAGS = -Wall -O3 --std=c++20
 AFLAGS = -larmadillo -rpath /opt/homebrew/Cellar/armadillo-12.8.3
 SIM = ../../Libraries/Simulator/SOURCE/
 RND = ../../Libraries/RandomGen/
@@ -11,7 +11,6 @@ main : $(SIM)system.o $(SIM)particle.o $(RND)random.o $(LIB)library.o main.o
 
 main.o : main.cpp $(SIM)system.hpp $(SIM)particle.hpp $(LIB)fmtlib.hpp
 	$(CC) $(CFLAGS) -c main.cpp -o main.o
-
 
 $(SIM)system.o : $(SIM)system.cpp $(SIM)system.hpp $(RND)random.hpp $(SIM)particle.hpp
 	$(CC) $(CFLAGS) -c $(SIM)system.cpp -o $(SIM)system.o
@@ -26,15 +25,15 @@ $(LIB)library.o : $(LIB)library.cpp $(LIB)library.hpp
 	$(CC) $(CFLAGS) -c $(LIB)library.cpp -o $(LIB)library.o
 
 
-solid : ./main Solid
+sol : main
 	./main Solid
-liquid : ./main Liquid
+liq : main
 	./main Liquid
-gas : ./main Gas
+gas : main
 	./main Gas
-all : main solid liquid gas
-
+all : main
+	./main Solid 
+	./main Liquid 
+	./main Gas
 clean :
-	rm *.o $(SIM)*.o $(RND)*.o
-cleanall :
 	rm *.o $(SIM)*.o $(RND)*.o main
