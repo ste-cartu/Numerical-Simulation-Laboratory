@@ -56,6 +56,7 @@ int main(int argc, char** argv){
     double cont_prog_dist = 0, cont_prog_dist2 = 0;
     double disc_err, cont_err;
 
+    fmt::print("Random walk\n");
     for (int s=0 ; s<steps ; s++) {
         for (int i=0 ; i<blocks ; i++) {
             for (int j=0 ; j<dim ; j++) {
@@ -98,7 +99,7 @@ int main(int argc, char** argv){
         cont_block_dist = 0, cont_block_dist2 = 0;
         cont_prog_dist = 0, cont_prog_dist2 = 0;
 
-        Progress_Bar(s+1, steps);
+        Progress_Bar(s, steps-1);
 
     }
     

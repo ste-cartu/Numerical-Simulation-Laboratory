@@ -36,11 +36,13 @@ int main(int argc, char** argv){
     double (*unif_sampl)(double) = Identity_Distrib;
     double (*unif_inv)(double) = Identity_Inverse;
 
+    fmt::print("Uniform sapmling\n");
     BA_Integral int_unif(f, unif_sampl, unif_inv, extr, blocks);
     ofstream out("unif_sampl.csv");
     out << "blocks,extractions,integral,error" << endl;
     int_unif.Progressive(out);
     out.close();
+    fmt::print("\n\n");
 
 
     /*––––––––––––––––––––––––––––––– IMPORTANCE SAMPLING –––––––––––––––––––––––––––––––*/
@@ -48,13 +50,12 @@ int main(int argc, char** argv){
     double (*impo_sampl)(double) = Importance_Distrib;
     double (*impo_inv)(double) = Importance_Inverse;
 
+    fmt::print("Importance sapmling\n");
     BA_Integral int_impo(f, impo_sampl, impo_inv, extr, blocks);
     out.open("impo_sampl.csv");
     out << "blocks,extractions,integral,error" << endl;
     int_impo.Progressive(out);
     out.close();
-
-
     fmt::print("\n\n");
     
     return 0;
