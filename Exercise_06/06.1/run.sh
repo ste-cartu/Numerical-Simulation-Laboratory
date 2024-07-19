@@ -12,9 +12,11 @@ do
     if [ $type == "metro" ]; then
         INPATH="Metropolis/INPUT/"
         OUTPATH="Metropolis/OUTPUT/"
+        SIM_TYPE=2
     elif [ $type == "gibbs" ]; then
         INPATH="Gibbs/INPUT/"
         OUTPATH="Gibbs/OUTPUT/"
+        SIM_TYPE=3
     else 
         echo "ERROR! Unknown argument!"
         exit 1
@@ -35,10 +37,10 @@ do
     echo "TEMP,ENERGY,ENERGY_ERR,CV,CV_ERR,CHI,CHI_ERR" > $OUTFILE
 
     SEARCH="^SIMULATION_TYPE.*$"
-    REPLACE="SIMULATION_TYPE        2 1 ${H}"
+    REPLACE="SIMULATION_TYPE        ${SIM_TYPE} 1 ${H}"
     sed -i.bak "s|$SEARCH|$REPLACE|g" $INFILE
 
-    mv ${INPATH}properties_H=0.00.dat ${INPATH}properties.dat
+    mv ${INPATH}properties_H=${H}.dat ${INPATH}properties.dat
 
     start=0.2
     step=0.04
@@ -78,7 +80,7 @@ do
     echo "TEMP,ENERGY,ENERGY_ERR,MAGNET,MAGNET_ERR" > $OUTFILE
 
     SEARCH="^SIMULATION_TYPE.*$"
-    REPLACE="SIMULATION_TYPE        2 1 ${H}"
+    REPLACE="SIMULATION_TYPE        ${SIM_TYPE} 1 ${H}"
     sed -i.bak "s|$SEARCH|$REPLACE|g" $INFILE
 
     mv ${INPATH}properties_H=0.02.dat ${INPATH}properties.dat

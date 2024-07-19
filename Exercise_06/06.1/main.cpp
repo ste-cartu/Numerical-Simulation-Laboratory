@@ -12,9 +12,10 @@ int main(int argc, char* argv[]) {
         exit(EXIT_FAILURE);
     }
     const std::string path = "./" + std::string(argv[1])  + "/";
+    const std::string rnd_path = "../../Libraries/RandomGen/";
     
     System SYS;
-    SYS.initialize(path);
+    SYS.initialize(path, rnd_path);
     SYS.initialize_properties(path);
 
     SYS.equilibration(path);

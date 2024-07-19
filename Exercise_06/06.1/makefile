@@ -1,5 +1,5 @@
-mCC = g++
-CFLAGS = -O3 --std=c++20
+CC = g++
+CFLAGS = -Wall -O3 --std=c++20
 AFLAGS = -larmadillo -rpath /opt/homebrew/Cellar/armadillo-12.8.3
 SIM = ../../Libraries/Simulator/SOURCE/
 RND = ../../Libraries/RandomGen/
