@@ -9,8 +9,9 @@ int main() {
     fmt::print("\nSIMULATION\n");
 
     const std::string path = "./";
+    const std::string rnd_path = "../../Libraries/RandomGen/";
     System SYS;
-    SYS.initialize(path);
+    SYS.initialize(path, rnd_path);
     SYS.initialize_properties(path);
     SYS.block_reset(0);
 

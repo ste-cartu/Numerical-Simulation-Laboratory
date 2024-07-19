@@ -6,8 +6,10 @@
 int main() {
 
     const std::string path = "./Equilibration/";
+    const std::string rnd_path = "../../../Libraries/RandomGen/";
+
     System SYS;
-    SYS.initialize(path);
+    SYS.initialize(path, rnd_path);
     SYS.initialize_properties(path);
 
     SYS.equilibration(path);
