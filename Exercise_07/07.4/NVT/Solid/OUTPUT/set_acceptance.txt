@@ -1,0 +1,1 @@
+1) Delta: 0.055	Acceptance: 0.5082

@@ -1,0 +1,6 @@
+1) Delta: 0.1	Acceptance: 0.5115
+2) Delta: 0.15	Acceptance: 0.3464
+3) Delta: 0.125	Acceptance: 0.4206
+4) Delta: 0.1125	Acceptance: 0.4643
+5) Delta: 0.10625	Acceptance: 0.4872
+6) Delta: 0.10313	Acceptance: 0.4996
