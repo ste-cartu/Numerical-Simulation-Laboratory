@@ -168,7 +168,7 @@ int main(int argc, char** argv){
         //cout << media[i] << " " << media2[i] << endl;
     }
 
-    // calcolo delle medie progressive
+    // progressive averages
     vector<double> media_vera;
     vector<double> media2_vera;
     vector<double> errore;
@@ -187,7 +187,7 @@ int main(int argc, char** argv){
 
     }
 
-    //stampo su file i numeri di lanci per ogni blocco, le medie e gli errori
+    // print on a file the number of throws per each block, averages and errors
     ofstream fout("media.csv");
 
     fout << "n_lanci\tmedia-0.5\terrore" << endl;
@@ -199,7 +199,7 @@ int main(int argc, char** argv){
     return 0;
 }
 
-// errore: deviazione standard della media: sqrt[(<x^2> - <x>^2) / (n-1)]
+// error: mean standard deviation sqrt[(<x^2> - <x>^2) / (n-1)]
 double Errore(vector <double> media, vector <double> media2, int n){
     if (n == 0) {return 0;}
     else {return sqrt((media2[n] - pow(media[n],2)) / n);}
