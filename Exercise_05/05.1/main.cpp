@@ -24,6 +24,7 @@ int main() {
 
     /*––––––––––––––––––––––––––––––– GROUND STATE - UNIFORM SAMPLING –––––––––––––––––––––––––––––––*/
 
+    fmt::print("\n\n––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––");
     fmt::print("\nGROUND STATE - UNIFORM SAMPLING\n");
     std::ofstream out("acceptance_100_unif.txt");
     out << "Target: " << target << "\tPrecision: " << prec << std::endl << std::endl;
@@ -31,13 +32,15 @@ int main() {
     out.close();
 
     // equilibration
-    // out.open("eq_100_unif.csv");
-    // out << "blocks,extractions,radius,error" << std::endl;
-    // BA_Metro eq_100_unif(extr, blocks, metro_100, false);
-    // eq_100_unif.Progressive(out);
-    // out.close();
+    fmt::print("\nEquilibration\n");
+    out.open("eq_100_unif.csv");
+    out << "blocks,extractions,radius,error" << std::endl;
+    BA_Metro eq_100_unif(extr, blocks, metro_100, false);
+    eq_100_unif.Progressive(out);
+    out.close();
 
     // blocking average
+    fmt::print("\nMeasure\n");
     out.open("radius_100_unif.csv");
     out << "blocks,extractions,radius,error" << std::endl;
     std::ofstream sampl("sampling.csv");
@@ -52,7 +55,8 @@ int main() {
 
     /*–––––––––––––––––––––––––––––– GROUND STATE - GAUSSIAN SAMPLING ––––––––––––––––––––––––––––––*/
 
-    fmt::print("\n\nGROUND STATE - GAUSSIAN SAMPLING\n");
+    fmt::print("\n\n––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––");
+    fmt::print("\nGROUND STATE - GAUSSIAN SAMPLING\n");
     out.open("acceptance_100_gaus.txt");
     out << "Target: " << target << "\tPrecision: " << prec << std::endl << std::endl;
     metro_100.Reset(step_100, gaus, x_100);
@@ -60,13 +64,15 @@ int main() {
     out.close();
 
     // equilibration
-    // out.open("eq_100_gaus.csv");
-    // out << "blocks,extractions,radius,error" << std::endl;
-    // BA_Metro eq_100_gaus(extr, blocks, metro_100, false);
-    // eq_100_gaus.Progressive(out);
-    // out.close();
+    fmt::print("\nEquilibration\n");
+    out.open("eq_100_gaus.csv");
+    out << "blocks,extractions,radius,error" << std::endl;
+    BA_Metro eq_100_gaus(extr, blocks, metro_100, false);
+    eq_100_gaus.Progressive(out);
+    out.close();
 
     // blocking average
+    fmt::print("\nMeasure\n");
     out.open("radius_100_gaus.csv");
     out << "blocks,extractions,radius,error" << std::endl;
     sampl.open("sampling.csv");
@@ -81,20 +87,23 @@ int main() {
 
     /*––––––––––––––––––––––––––––––– EXCITED STATE - UNIFORM SAMPLING –––––––––––––––––––––––––––––––*/
 
-    fmt::print("\n\nEXCITED STATE - UNIFORM SAMPLING\n");
+    fmt::print("\n\n––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––");
+    fmt::print("\nEXCITED STATE - UNIFORM SAMPLING\n");
     out.open("acceptance_210_unif.txt");
     out << "Target: " << target << "\tPrecision: " << prec << std::endl << std::endl;
     double step_210_unif = metro_210.SetAcceptance(target, prec, step_210, nstep, &out);
     out.close();
 
     // equilibration
-    // out.open("eq_210_unif.csv");
-    // out << "blocks,extractions,radius,error" << std::endl;
-    // BA_Metro eq_210_unif(extr, blocks, metro_210, false);
-    // eq_210_unif.Progressive(out);
-    // out.close();
+    fmt::print("\nEquilibration\n");
+    out.open("eq_210_unif.csv");
+    out << "blocks,extractions,radius,error" << std::endl;
+    BA_Metro eq_210_unif(extr, blocks, metro_210, false);
+    eq_210_unif.Progressive(out);
+    out.close();
 
     // blocking average
+    fmt::print("\nMeasure\n");
     out.open("radius_210_unif.csv");
     out << "blocks,extractions,radius,error" << std::endl;
     sampl.open("sampling.csv");
@@ -111,7 +120,8 @@ int main() {
 
     /*–––––––––––––––––––––––––––––– EXCITED STATE - GAUSSIAN SAMPLING ––––––––––––––––––––––––––––––*/
 
-    fmt::print("\n\nEXCITED STATE - GAUSSIAN SAMPLING\n");
+    fmt::print("\n\n––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––");
+    fmt::print("\nEXCITED STATE - GAUSSIAN SAMPLING\n");
     out.open("acceptance_210_gaus.txt");
     out << "Target: " << target << "\tPrecision: " << prec << std::endl << std::endl;
     metro_210.Reset(step_210, gaus, x_210);
@@ -119,13 +129,15 @@ int main() {
     out.close();
 
     // equilibration
-    // out.open("eq_210_gaus.csv");
-    // out << "blocks,extractions,radius,error" << std::endl;
-    // BA_Metro eq_210_gaus(extr, blocks, metro_210, false);
-    // eq_210_gaus.Progressive(out);
-    // out.close();
+    fmt::print("\nEquilibration\n");
+    out.open("eq_210_gaus.csv");
+    out << "blocks,extractions,radius,error" << std::endl;
+    BA_Metro eq_210_gaus(extr, blocks, metro_210, false);
+    eq_210_gaus.Progressive(out);
+    out.close();
 
     // blocking average
+    fmt::print("\nMeasure\n");
     out.open("radius_210_gaus.csv");
     out << "blocks,extractions,radius,error" << std::endl;
     sampl.open("sampling.csv");
@@ -140,7 +152,8 @@ int main() {
 
     /*–––––––––––––––––––––––––––––––––––– FAR FROM THE ORIGIN ––––––––––––––––––––––––––––––––––––*/
 
-    fmt::print("\n\nFAR FROM THE ORIGIN\n");
+    fmt::print("\n\n––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––");
+    fmt::print("\nFAR FROM THE ORIGIN\n");
     arma::vec x_far = {100., 100., 100.};
     Metropolis far_100(step_100_unif, unif, prob_100, x_far);
     Metropolis far_210(step_210_unif, unif, prob_210, x_far);
