@@ -40,15 +40,12 @@ clean :
 rmsol :
 	rm Solid/OUTPUT/*.*
 	rm Solid/OUTPUT/EQUILIBRATION/*.*
-	rm Solid/OUTPUT/SIMULATION/*.*
 	rm Solid/OUTPUT/CONFIG/*.*
 rmliq :
 	rm Liquid/OUTPUT/*.*
 	rm Liquid/OUTPUT/EQUILIBRATION/*.*
-	rm Liquid/OUTPUT/SIMULATION/*.*
 	rm Liquid/OUTPUT/CONFIG/*.*
 rmgas :
 	rm Gas/OUTPUT/*.*
 	rm Gas/OUTPUT/EQUILIBRATION/*.*
-	rm Gas/OUTPUT/SIMULATION/*.*
 	rm Gas/OUTPUT/CONFIG/*.*

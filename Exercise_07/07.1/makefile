@@ -33,5 +33,4 @@ clean :
 remove :
 	rm OUTPUT/*.*
 	rm OUTPUT/EQUILIBRATION/*.*
-	rm OUTPUT/SIMULATION/*.*
 	rm OUTPUT/CONFIG/*.*

@@ -24,8 +24,6 @@ int main(int argc, char* argv[]) {
     out.close();
     SYS.initialize_properties(path);
 
-    SYS.equilibration(path);
-
     fmt::print("\nSIMULATION\n");
     int steps = SYS.get_nsteps();
     int blocks = SYS.get_nbl();
