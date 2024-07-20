@@ -24,7 +24,7 @@ int main() {
     arma::vec x = arma::zeros<arma::vec>(1);
 
     // initializing variables for simulated annealing
-    double T, beta;                 // temperature
+    double T, beta;                 // temperature going from 1 to 0.001
     double T0 = 1.;
     double mu_old = mu, sigma_old = sigma;
     double mu_best, sigma_best;
@@ -45,7 +45,7 @@ int main() {
     std::string const rnd_path = "../../Libraries/RandomGen/";
     Random rnd(rnd_path);
 
-    int N = 1000;
+    int N = 10000;
     fmt::print("Optimization of the parameters\n");
     for(int i=0 ; i<N ; i++) {
         beta = i+1;
@@ -80,7 +80,6 @@ int main() {
         opt.open("optimization.csv", std::ios::app);
         output = fmt::format("{},{:.5f},{:.4f},{:.4f},{:.4f},{:.4f},{:.4f}\n", counter, T, mu, sigma, acc, ene, err);
         opt << output;
-        //opt << counter << "," << T << "," << mu << "," << sigma << "," << acc << "," << ene << "," << err << std::endl;
         opt.close();
         counter++;
 
