@@ -1,18 +1,26 @@
 Equilibration started!
 
 Initial temperature: 0.8
-	Measured T*: 0.409534 ± 0.00145909	Target T*: 0.8
+	Measured T*: 0.409186 ± 0.000131158	Target T*: 0.8
 Initial temperature: 1.2
-	Measured T*: 0.619284 ± 0.00316941	Target T*: 0.8
+	Measured T*: 0.619112 ± 0.000190605	Target T*: 0.8
 Initial temperature: 1.4
-	Measured T*: 0.724065 ± 0.00328297	Target T*: 0.8
+	Measured T*: 0.724576 ± 0.000279406	Target T*: 0.8
 Initial temperature: 1.5
-	Measured T*: 0.778298 ± 0.00306022	Target T*: 0.8
+	Measured T*: 0.778119 ± 0.000263321	Target T*: 0.8
 Initial temperature: 1.55
-	Measured T*: 0.806201 ± 0.00330274	Target T*: 0.8
+	Measured T*: 0.804638 ± 0.00027951	Target T*: 0.8
+Initial temperature: 1.525
+	Measured T*: 0.791444 ± 0.000291321	Target T*: 0.8
+Initial temperature: 1.5375
+	Measured T*: 0.797867 ± 0.000289117	Target T*: 0.8
+Initial temperature: 1.54375
+	Measured T*: 0.801296 ± 0.000278635	Target T*: 0.8
+Initial temperature: 1.54063
+	Measured T*: 0.799449 ± 0.000296958	Target T*: 0.8
 
 Equilibration completed!
 
-T_INPUT: 1.55
+T_INPUT: 1.54063
 
 
