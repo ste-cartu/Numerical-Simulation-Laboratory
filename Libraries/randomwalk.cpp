@@ -46,7 +46,10 @@ void Walker :: Continue_Step(double the, double phi) {
         fmt::print("ERROR! Spherical coordinate step must be in 3D!\n\n");
         exit(0);
     }
-
+    if (the < 0 || the >= 1 || phi < 0 || phi >= 1 ) {
+        fmt::print("ERROR! Random number must be in range [0,1)!\n\n");
+        exit(0);
+    }
     double theta = std::acos(1 - 2*the);
     phi *= 2*M_PI;
 

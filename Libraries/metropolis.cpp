@@ -2,7 +2,7 @@
 #include <fstream>
 
 
-/*––––––––––––––––––––––––––––––– METROPOLIS ALGORITHM –––––––––––––––––––––––––––––––*/
+/*––––––––––––––––––––––––––––––––––– M(RT)^2 ALGORITHM –––––––––––––––––––––––––––––––––––*/
 
 
 void Metropolis :: Reset(double step, int type, arma::vec x) {

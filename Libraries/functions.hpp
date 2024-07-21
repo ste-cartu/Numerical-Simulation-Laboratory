@@ -70,6 +70,7 @@ class hydrogen_210 : public function {
 };
 
 
+// virtual class for exercise 08
 class variational : virtual public function {
 
     public:
@@ -85,6 +86,7 @@ class variational : virtual public function {
 };
 
 
+// trial wave function for exercise 08
 class wave_func : public variational {
 
     public:
@@ -95,6 +97,7 @@ class wave_func : public variational {
 };
 
 
+// trial wave function absolute square value for exercise 08
 class wave_func2 : public variational {
 
     public:
@@ -105,13 +108,13 @@ class wave_func2 : public variational {
 };
 
 
+// hamiltonian evaluation for exercise 08
 class hamiltonian : public variational {
 
     public:
         hamiltonian(double mu, double sigma) {mu_ = mu, sigma_ = sigma;}
         virtual ~hamiltonian() {;}
         double Eval(arma::vec x) const override {
-            //double psi = std::exp(-min_(x)) + std::exp(-plu_(x));
             wave_func psi(mu_, sigma_);
 
             double kin = - (1./(2.*sigma_*sigma_*psi(x))) * ( (2.*min_(x) - 1.)*std::exp(-min_(x)) + (2.*plu_(x) - 1.)*std::exp(-plu_(x)) );

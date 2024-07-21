@@ -25,20 +25,21 @@ class Walker {
             oldpos_[2] = z;
         }
         ~Walker() {;}
-        void Discrete_Step();
-        void Discrete_Step(double r);
-        void Continue_Step();
-        void Continue_Step(double the, double phi);
-        double Distance2(double x0 = 0, double y0 = 0, double z0 = 0);
+
+        void Discrete_Step();                           // performs a random walk step in a discrete space (i.e. a lattice)
+        void Discrete_Step(double r);                   // performs a random walk step in a discrete space (i.e. a lattice)
+        void Continue_Step();                           // performs a random walk step in a continue space
+        void Continue_Step(double the, double phi);     // performs a random walk step in a continue space
+        double Distance2(double x0 = 0, double y0 = 0, double z0 = 0);      // returns the square value of the random walk distance from the origin
         double X() {return pos_[0];}
         double Y() {return pos_[1];}
         double Z() {return pos_[2];}
 
     private:
-        double step_;
-        int dim_;
-        arma::vec pos_;
-        arma::vec oldpos_;
-        Random rnd_;
+        Random rnd_;            // random numbers generator
+        double step_;           // length of the random walk steps
+        int dim_;               // dimensionality of the random walk
+        arma::vec pos_;         // current position of the random walk
+        arma::vec oldpos_;      // old position of the random walk
 
 };

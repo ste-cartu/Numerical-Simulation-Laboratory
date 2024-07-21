@@ -46,10 +46,10 @@ class Individual {
         Individual& operator =(const Individual& ind);
         unsigned long long& operator[](size_t i) {return index_(i);}
 
-        bool Check();           // check individuals constraints
-        void Permutation(int blk_length = 0);
-        void Shift();
-        void Inversion();
+        bool Check();                               // check individuals constraints
+        void Permutation(int blk_length = 0);       // performs the permutation of two elements or two blocks within an individual
+        void Shift();                               // shifts a subset of individual elements
+        void Inversion();                           // inverts the order of an individual subset
         void SetLoss(double loss) {loss_ = loss;}
         void SetIndex(uvec index) {index_ = index;}
 
@@ -101,11 +101,11 @@ class Population {
         Population& operator =(const Population& pop);
         Individual& operator[](size_t i) {return dna_.at(i);}
 
-        void Distances();                   // stores all distances of the elements to speed up the calculation of the loss function
-        void Losses();
-        void Crossover(int i1);
+        void Distances();                       // stores all distances of the elements to speed up the calculation of the loss values
+        void Losses();                          // evaluates the losses of all the individuals of the population
+        void Crossover(int i1);                 // performs the crossover between two individuals of the population
+        void Order(bool crescent = true);       // reorders the population individuals with respect to the loss values
         void SetDna(unordered_map<int, Individual> dna) {dna_ = dna;}
-        void Order(bool crescent = true);
 
         Random* GetRnd() const {return rnd_;}
         int GetDim() const {return dim_;}
@@ -117,7 +117,7 @@ class Population {
 
     private :
         Random* rnd_;                           // random numbers generator
-        int dim_, len_, norm_;                   // size of the population, size of an individual, order of the norm in the loss function (distance)
+        int dim_, len_, norm_;                  // size of the population, size of an individual, order of the norm in the loss function (distance)
         mat genes_, dist_;                      // matrices with all the cities and all the distances between them
         unordered_map<int, Individual> dna_;    // true population: a map of individuals with indices
 };
@@ -146,16 +146,16 @@ class TSP {
         Individual& operator[](size_t i) {return pop_[i];}
 
         void Init(const string input_file = "input.txt");
-        void InitPopulation();
-        void SetPopulation(Population pop);
+        void InitPopulation();                                          // initializes the starting population with respect to the problem type
+        void SetPopulation(Population pop);                             // changes the actual population
         void Circle(double x_c = 0, double y_c = 0, double r = 1);      // generation of cities on a circle (given the coordinates of the centre and the radius)
         void Square(double x_v = 0, double y_v = 0, double l = 1);      // generation of cities on a circle (given the coordinates of the lower left vertex and of the side)
         void FromFile(const string input_file);                         // read the cities from an input file
-        void Order() {pop_.Order();}
-        void Selection(int type = 0);
-        void Mutations();
-        int Selectionn(int type = 0);
-        void Mutationss(int inde);
+        void Order() {pop_.Order();}                                    // calls the population reordering method: reorders the population individuals with respect to the loss values
+        void Selection(int type = 0);                                   // generates a new population selecting with higher probabilities individuals with small losses
+        void Mutations();                                               // performs crossover and other mutations on all the population, each mutation has its probability to happen
+        // int Selectionn(int type = 0);
+        // void Mutationss(int inde);
 
         string GetType() {return type_;}
         int GetLen() {return len_;}

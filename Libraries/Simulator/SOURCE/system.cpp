@@ -74,9 +74,9 @@ double System :: Force(int i, int dim){
 
 void System :: move(int i){ // Propose a MC move for particle i
   if(_sim_type == 3){ //Gibbs sampler for Ising
-    double delta_E = 2.0 * _beta * _particle(i).getspin() * _J * (_particle(this->pbc(i-1)).getspin() + _particle(this->pbc(i+1)).getspin());
-    double prob = 1.0 / (1.0 + exp(-delta_E));
-    if(_rnd.Rannyu() < prob) _particle(i).setspin(1);
+    double delta_E = 2.0 * ( _J * (_particle(this->pbc(i-1)).getspin() + _particle(this->pbc(i+1)).getspin()) + _H);
+    double acceptance = 1.0 / (1.0 + exp(-_beta*delta_E));
+    if(_rnd.Rannyu() < acceptance) _particle(i).setspin(1);
     else _particle(i).setspin(-1);
     _naccepted++;
   } else {           // M(RT)^2
@@ -104,8 +104,7 @@ bool System :: metro(int i){ // Metropolis algorithm
   bool decision = false;
   double delta_E, acceptance;
   if(_sim_type == 1) delta_E = this->Boltzmann(i,true) - this->Boltzmann(i,false);
-  else delta_E = 2.0 * _particle(i).getspin() * 
-                 ( _J * (_particle(this->pbc(i-1)).getspin() + _particle(this->pbc(i+1)).getspin() ) + _H );
+  else delta_E = 2.0 * _particle(i).getspin() * ( _J * (_particle(this->pbc(i-1)).getspin() + _particle(this->pbc(i+1)).getspin() ) + _H );
   acceptance = exp(-_beta*delta_E);
   if(_rnd.Rannyu() < acceptance ) decision = true; //Metropolis acceptance step
   return decision;
@@ -880,7 +879,7 @@ void System :: equilibration(const string path){ // Perform the equilibration of
 
   fmt::print("\nEQUILIBRATION\n");
 
-  if (_sim_type < 2){
+  if (_sim_type == 0){
     if (!_measure_temp){
       cerr << "PROBLEM: equilibration needs to measure the temperature!" << endl;
       exit(EXIT_FAILURE);

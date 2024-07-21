@@ -341,7 +341,7 @@ void TSP :: Selection(int type) {
     int index;
     this->Order();
     unordered_map<int, Individual> dna;
-    for(int i=0 ; i<dim_ ; i++) {       // norm_er-based selection
+    for(int i=0 ; i<dim_ ; i++) {       // order-based selection
         if(type == 0) {index = static_cast<int>((double)dim_ * (pow(rnd_->Rannyu(), p_)));}
         else {fmt::print("ERROR! Unknown selection type!\n\n"); exit(1);}
         dna[i] = pop_[index];
@@ -351,15 +351,17 @@ void TSP :: Selection(int type) {
 }
 
 
+/* selection performed on one element per time
 int TSP :: Selectionn(int type) {
     int index;
-    if(type == 0) {         // norm_er-based selection
+    if(type == 0) {         // order-based selection
         pop_.Order();   
         index = static_cast<int>((double)dim_ * (pow(rnd_->Rannyu(), p_)));
     }
     else {fmt::print("ERROR! Unknown selection type!\n\n"); exit(1);}
     return index;
 }
+ */
 
 
 void TSP :: Mutations() {
@@ -378,6 +380,7 @@ void TSP :: Mutations() {
 }
 
 
+/* mutations performed on one element per time
 void TSP :: Mutationss(int i) {
     for(int j=0 ; j<n_mut_ ; j++) {
         if(rnd_->Rannyu() < probs_(j)) {
@@ -391,4 +394,4 @@ void TSP :: Mutationss(int i) {
     }
 
 }
-
+ */
