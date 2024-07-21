@@ -11,6 +11,7 @@ int main(int argc, char* argv[]) {
 
     int size, rank;
 
+    // initialization of the parallel processes
     MPI_Init(&argc, &argv); 
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -145,7 +146,7 @@ int main(int argc, char* argv[]) {
     salesman_circle.GetPop().Order();
     salesman_square.GetPop().Order();
 
-    // finally, put in process 0 the best of all paths
+    // finally, find the best path
     double min_cir_local[1] = {salesman_circle[0].GetLoss()};
     double min_squ_local[1] = {salesman_square[0].GetLoss()};
     double min_cir_global[1];
@@ -157,8 +158,18 @@ int main(int argc, char* argv[]) {
     MPI_Bcast(min_cir_global, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
     MPI_Bcast(min_squ_global, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
-    if(salesman_circle[0].GetLoss() == min_cir_global[0]) {fmt::print("Best circle process: {}   Loss: {}\n", rank, min_cir_global[0]);}
-    if(salesman_square[0].GetLoss() == min_squ_global[0]) {fmt::print("Best square process: {}   Loss: {}\n", rank, min_squ_global[0]);}
+    ofstream best("best_process.txt");
+    if(salesman_circle[0].GetLoss() == min_cir_global[0]) {
+        string best_cir = fmt::format("Best circle process: {}\t\tLoss: {:.5f}\n", rank, min_cir_global[0]);
+        fmt::print("{}", best_cir);
+        best << best_cir;
+    }
+    if(salesman_square[0].GetLoss() == min_squ_global[0]) {
+        string best_squ = fmt::format("Best square process: {}\t\tLoss: {:.5f}\n", rank, min_squ_global[0]);
+        fmt::print("{}", best_squ);
+        best << best_squ;
+    }
+    best.close();
 
     MPI_Finalize();
     return 0;
