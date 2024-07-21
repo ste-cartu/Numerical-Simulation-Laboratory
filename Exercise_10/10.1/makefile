@@ -26,6 +26,6 @@ exe :
 	mpiexec -np $(NP) ./main
 all : main exe
 clean :
-	rm *.o main $(LIB)*.o $(RND)*.o
+	rm *.o main $(LIB)*.o $(RND)*.o main
 remove :
 	rm Output/*.*
