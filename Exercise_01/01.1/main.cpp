@@ -100,6 +100,29 @@ int main(int argc, char** argv){
     out.close();
 
 
+    // computing chi2 with many points
+    fmt::print("Computing chi squared\n");
+    out.open("chi2.csv");
+    out << "#extr,chi squared" << endl;
+    int T = 1e4, N=1e4, M=100;
+    for (int i=0 ; i<T ; i++){
+        Progress_Bar(i, T-1);
+        chi2 = 0;
+        vector <int> hit(M, 0);
+        for (int j=0 ; j<N ; j++){
+            double r = rnd.Rannyu();
+            for (int c=0 ; c<M ; c++) { 
+                if (r >= (double)c/M && r < (double)(c+1)/M) {hit[c]++;} 
+            }
+        }
+        for (int j=0 ; j<M ; j++) {chi2 += (pow(((double)hit[j] - N/M), 2)/(double)(N/M));}
+        out << i+1 << "," << chi2 << endl;
+    }
+    out.close();
+    fmt::print("\n\n");
+
+
+
 
     // 2ND METHOD: using classes
     /*–––––––––––––––––––––––––––––––––– PART 1 ––––––––––––––––––––––––––––––––––*/
