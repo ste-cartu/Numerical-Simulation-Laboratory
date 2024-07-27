@@ -6,8 +6,8 @@
 
 int main() {
 
-    fmt::print("\n");
     /*––––––––––––––––––––––––––––––––– FIRST EVALUATION –––––––––––––––––––––––––––––––––*/
+    fmt::print("\n");
 
     // blocking averagre variables
     unsigned int extr = 1e6;
