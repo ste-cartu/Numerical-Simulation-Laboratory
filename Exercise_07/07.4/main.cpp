@@ -40,8 +40,8 @@ int main(int argc, char* argv[]) {
             SYS.step();
             SYS.measure();
         }
-    SYS.averages(i+1, path);
-    SYS.block_reset(i+1, path);
+        SYS.averages(i+1, path);
+        SYS.block_reset(i+1, path);
     }
     
     fmt::print("\nSIMULATION COMPLETED\n\n");
