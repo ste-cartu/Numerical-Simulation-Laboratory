@@ -8,7 +8,7 @@ In this repository it is stored the code I wrote for the Numerical Simulation La
 ## Prerequisites
 To run the exercises contained in this repository you must have:
 - A `C++` compiler supporting `C++20`
-- `Armadillo` library
+- `Armadillo` library: please note that in the `makefiles` contained here this library is linked following the path `/opt/homebrew/Cellar/armadillo-12.8.3`. If you have it installed anywhere else on your computer you should change this path.
 - `Openmp` librray (only for exercise 10)
 
 ## Usage
