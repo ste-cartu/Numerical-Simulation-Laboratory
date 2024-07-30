@@ -18,10 +18,11 @@ int main(){
         return -1;
     }
 
-    //unsigned int dim = extr/blocks;     // length of each block
-    double S0 = 100;                    // asset price at t=0
-    double T = 1;                       // delivery time
-    double K = 100;                     // strike price
+    //unsigned int dim = extr/blocks;   // length of each block
+    double S0 = 100.;                   // asset price at t=0
+    double T0 = 0;                      // starting time
+    double T = 1.;                      // delivery time
+    double K = 100.;                    // strike price
     double r = 0.1;                     // risk-free interest rate
     double sigma = 0.25;                // volatility
 
@@ -31,7 +32,7 @@ int main(){
     // call option
     fmt::print("Call option: direct sampling:\n");
     double (*call_profit)(double, double) = Call_Profit;
-    BA_Option call(extr, blocks, call_profit, S0, K, r, sigma);
+    BA_Option call(extr, blocks, call_profit, S0, K, r, sigma, T0, T);
     std::ofstream out_call("direct_call.csv");
     out_call << "blocks,extractions,profit,error" << std::endl;
     call.Progressive(out_call);
@@ -41,7 +42,7 @@ int main(){
     // put option
     fmt::print("Put option: direct sampling:\n");
     double (*put_profit)(double, double) = Put_Profit;
-    BA_Option put(extr, blocks, put_profit, S0, K, r, sigma);
+    BA_Option put(extr, blocks, put_profit, S0, K, r, sigma, T0, T);
     std::ofstream out_put("direct_put.csv");
     out_put << "blocks,extractions,profit,error" << std::endl;
     put.Progressive(out_put);
@@ -51,12 +52,11 @@ int main(){
 
     /*––––––––––––––––––––––––––––––– INDIRECT SAMPLING –––––––––––––––––––––––––––––––*/
 
-    double T0 = 0;
     unsigned int nstep = 100;
     
     // call option
     fmt::print("Call option: indirect sampling:\n");
-    call.SetSampling(T0, T, nstep);
+    call.SetSteps(nstep);
     out_call.open("indirect_call.csv");
     out_call << "blocks,extractions,profit,error" << std::endl;
     call.Progressive(out_call);
@@ -65,7 +65,7 @@ int main(){
 
     // put option
     fmt::print("Put option: indirect sampling:\n");
-    put.SetSampling(T0, T, nstep);
+    put.SetSteps(nstep);
     out_put.open("indirect_put.csv");
     out_put << "blocks,extractions,profit,error" << std::endl;
     put.Progressive(out_put);
