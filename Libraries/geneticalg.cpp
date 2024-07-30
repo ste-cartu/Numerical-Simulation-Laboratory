@@ -214,11 +214,28 @@ void TSP :: Init(const string input_file) {
             else if(param == "generations_number") {in >> n_gens_;}
             else if(param == "migration_number") {in >> n_migr_;}
             else if(param == "mutations_number") {in >> n_mut_; probs_.resize(n_mut_);}
-            else if(param == "crossover_prob") {in >> probs_(i_mut); i_mut++;}
-            else if(param == "pair_permut_prob") {in >> probs_(i_mut); i_mut++;}
-            else if(param == "block_permut_prob") {in >> probs_(i_mut); i_mut++;}
-            else if(param == "shift_prob") {in >> probs_(i_mut); i_mut++;}
-            else if(param == "inversion_prob") {in >> probs_(i_mut); i_mut++;}
+            else if(param == "crossover_prob") {
+                if(i_mut >= n_mut_) {fmt::print("ERROR! Trying to initialize mutation {}, but mutations_number is {}!\n\n", i_mut+1, n_mut_); exit(1);}
+                else {in >> probs_(i_mut); i_mut++;}
+            }
+            else if(param == "pair_permut_prob") {
+                if(i_mut >= n_mut_) {fmt::print("ERROR! Trying to initialize mutation {}, but mutations_number is {}!\n\n", i_mut+1, n_mut_); exit(1);}
+                else {in >> probs_(i_mut); i_mut++;}
+            }
+            else if(param == "block_permut_prob") {
+                if(i_mut >= n_mut_) {fmt::print("ERROR! Trying to initialize mutation {}, but mutations_number is {}!\n\n", i_mut+1, n_mut_); exit(1);}
+                else {in >> probs_(i_mut); i_mut++;}
+            }
+            else if(param == "shift_prob") {
+                if(i_mut >= n_mut_) {fmt::print("ERROR! Trying to initialize mutation {}, but mutations_number is {}!\n\n", i_mut+1, n_mut_); exit(1);}
+                else {in >> probs_(i_mut); i_mut++;}
+            }
+            else if(param == "inversion_prob") {
+                if(i_mut >= n_mut_) {fmt::print("ERROR! Trying to initialize mutation {}, but mutations_number is {}!\n\n", i_mut+1, n_mut_); exit(1);}
+                else {in >> probs_(i_mut); i_mut++;}
+            }
+            else if(param == "initial_temp") {in >> temp_i_;}
+            else if(param == "final_temp") {in >> temp_f_;}
             else if(param == "ENDINPUT") {break;}
             else {fmt::print("ERROR! Unknown input parameter: {}!\n\n", param); exit(1);}
         }
@@ -231,6 +248,12 @@ void TSP :: Init(const string input_file) {
     else if(dim_ == 0) {fmt::print("ERROR! Program must initialize the size of populations!\n\n"); exit(1);}
     else if(len_ == 0) {fmt::print("ERROR! Program must initialize the number of cities!\n\n"); exit(1);}
     else if(norm_ == 0) {fmt::print("ERROR! Program must initialize the order of the distances!\n\n"); exit(1);}
+    else if(i_mut != n_mut_) {fmt::print("ERROR! Number of mutation initialized: {}, mutations_number: {}!\n\n", i_mut, n_mut_); exit(1);}
+    else if(temp_i_ != temp_f_ and dim_ != 1) {fmt::print("ERROR! Parallel tempering must be done with one individual per population, but population_size is {}!\n\n", dim_); exit(1);}
+    
+    if(temp_i_ != temp_f_) {
+        for(int i=1 ; i<n_mut_ ; i++) {probs_(i) = 1.;}
+    }
 }
 
 
@@ -351,6 +374,32 @@ void TSP :: Selection(int type) {
 }
 
 
+void TSP :: Mutations() {
+    Population old;
+    double acc;
+    for(int j=0 ; j<n_mut_ ; j++) {                 // perform all the mutations ...
+        if(temp_i_ != temp_f_) {old = pop_;}
+        for(int i=0 ; i<dim_ ; i++) {               // ... on all population elements ...
+            if(rnd_->Rannyu() < probs_(j)) {        // ... each one with its own probability
+                if(j == 0) {if(dim_ > 1) {pop_.Crossover(i);}}
+                else if (j == 1) {pop_[i].Permutation(1);}
+                else if (j == 2) {pop_[i].Permutation();}
+                else if (j == 3) {pop_[i].Shift();}
+                else if (j == 4) {pop_[i].Inversion();}
+                else {fmt::print("ERROR! Unknown mutation!\n\n"); exit(1);}
+            }
+        }
+        if(temp_i_ != temp_f_ and j != 0) {         // parallel tempering acceptance condition
+            pop_.Losses();
+            for(int i=0 ; i<dim_ ; i++) {
+                acc = min(1., exp(-(pop_[i].GetLoss() - old[i].GetLoss()) / temp_));
+                if(rnd_->Rannyu() > acc) {pop_[i] = old[i];}
+            }
+        }
+    }
+}
+
+
 /* selection performed on one element per time
 int TSP :: Selectionn(int type) {
     int index;
@@ -362,22 +411,6 @@ int TSP :: Selectionn(int type) {
     return index;
 }
  */
-
-
-void TSP :: Mutations() {
-    for(int i=0 ; i<dim_ ; i++) {
-        for(int j=0 ; j<n_mut_ ; j++) {
-            if(rnd_->Rannyu() < probs_(j)) {
-                if(j == 0) {pop_.Crossover(i);}
-                else if (j == 1) {pop_[i].Permutation(1);}
-                else if (j == 2) {pop_[i].Permutation();}
-                else if (j == 3) {pop_[i].Shift();}
-                else if (j == 4) {pop_[i].Inversion();}
-                else {fmt::print("ERROR! Unknown mutation!\n\n"); exit(1);}
-            }
-        }
-    }
-}
 
 
 /* mutations performed on one element per time

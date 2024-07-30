@@ -94,15 +94,6 @@ double BA_Integral :: Increase() {
 }
 
 
-void BA_Option :: SetSampling(double tinit, double tfin, unsigned int nstep) {
-    
-    start_ = tinit;
-    stop_ = tfin;
-    nstep_ = nstep;
-
-}
-
-
 double BA_Option :: Increase() {
     
     double val = 0., price = initial_;

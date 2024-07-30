@@ -107,22 +107,24 @@ class BA_Integral : public BlockingAverage {
 class BA_Option : public BlockingAverage {
 
     public:
-        BA_Option(unsigned int extr, unsigned int blocks, double (*profit)(double, double), double S0, double K, double mu, double sigma) : 
+        BA_Option(unsigned int extr, unsigned int blocks, double (*profit)(double, double), double S0, double K, double mu, double sigma, double start, double stop) : 
         BlockingAverage(extr, blocks), Profit_(profit) {
             initial_ = S0;
             strike_ = K;
             drift_ = mu;
             volatility_ = sigma;
+            start_ = start;
+            stop_ = stop;
         }
         virtual ~BA_Option() {;}
-        void SetSampling(double tinit, double tfin, unsigned int nstep);    // sets the type of sampling (direct or indirect) changing also the time interval of integration
+        void SetSteps(unsigned int nstep) {nstep_ = nstep;}         // sets the number of steps for indirect sampling
         double Increase() override;
 
     private:
         double (*Profit_)(double, double);          // pointer to function that returns the type of profit, the only difference between call and put options
         double initial_, strike_;                   // initial and strike prices
         double drift_, volatility_;                 // drift and volatility of the geometric brownian motion that models the price
-        double start_ = 0., stop_ = 1.;             // starting and stopping time
+        double start_, stop_;                       // starting and stopping time
         unsigned int nstep_ = 1;                    // number of steps: 1 for direct sampling and more for indirect
         
 };

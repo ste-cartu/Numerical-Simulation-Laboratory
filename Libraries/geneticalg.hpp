@@ -9,6 +9,7 @@
 
 #include "RandomGen/random.hpp"
 #include "fmtlib.hpp"
+#include "library.hpp"
 
 using namespace std;
 using namespace arma;
@@ -135,12 +136,14 @@ class TSP {
             sel_ = 0, p_ = 0, n_gens_ = 0, n_mut_ = 0;
             dim_ = 0, len_ = 0, norm_ = 0;
             rank_ = 0, n_migr_ = 0;
+            temp_i_ = 1., temp_f_ = temp_i_, temp_ = temp_i_;
         }
         TSP(Random* rnd, int rank = 0) : rnd_(rnd) {
             rank_ = rank;
             sel_ = 0, p_ = 0, n_gens_ = 0, n_mut_ = 0;
             dim_ = 0, len_ = 0, norm_ = 0;
             n_migr_ = 0;
+            temp_i_ = 1., temp_f_ = temp_i_, temp_ = temp_i_;
         }
 
         Individual& operator[](size_t i) {return pop_[i];}
@@ -164,7 +167,12 @@ class TSP {
         int GetNGens() {return n_gens_;}
         int GetNMigr() {return n_migr_;}
         Population GetPop() {return pop_;}
+        string GetCitiesFile() {return cities_file_;}
+        double GetTempI() {return temp_i_;}
+        double GetTempF() {return temp_f_;}
+        double GetTemp() {return temp_;}
         void SetType(string type) {type_ = type; cities_file_ = "cities_" + type_ + ".tsv";}
+        void SetTemp(double temp) {temp_ = temp;}
 
 
     private:
@@ -175,4 +183,5 @@ class TSP {
         int sel_, p_, n_gens_, n_mut_;          // type of selection algorithm, exponent of the order-based selection (type 0), number of generations, number of possible mutations
         int dim_, len_, norm_;                  // size of the population, size of an individual (number of cities), order of the norm in the loss function (distance)
         int rank_, n_migr_;                     // rank of parallel process and migration number
+        double temp_i_, temp_f_, temp_;         // initial, final and current temperatures for parallel tempering
 };
