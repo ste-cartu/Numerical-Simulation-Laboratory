@@ -234,8 +234,8 @@ void TSP :: Init(const string input_file) {
                 if(i_mut >= n_mut_) {fmt::print("ERROR! Trying to initialize mutation {}, but mutations_number is {}!\n\n", i_mut+1, n_mut_); exit(1);}
                 else {in >> probs_(i_mut); i_mut++;}
             }
-            else if(param == "initial_temp") {in >> temp_i_;}
-            else if(param == "final_temp") {in >> temp_f_;}
+            else if(param == "highest_temp") {in >> temp_hi_;}
+            else if(param == "lowest_temp") {in >> temp_lo_;}
             else if(param == "ENDINPUT") {break;}
             else {fmt::print("ERROR! Unknown input parameter: {}!\n\n", param); exit(1);}
         }
@@ -249,9 +249,9 @@ void TSP :: Init(const string input_file) {
     else if(len_ == 0) {fmt::print("ERROR! Program must initialize the number of cities!\n\n"); exit(1);}
     else if(norm_ == 0) {fmt::print("ERROR! Program must initialize the order of the distances!\n\n"); exit(1);}
     else if(i_mut != n_mut_) {fmt::print("ERROR! Number of mutation initialized: {}, mutations_number: {}!\n\n", i_mut, n_mut_); exit(1);}
-    else if(temp_i_ != temp_f_ and dim_ != 1) {fmt::print("ERROR! Parallel tempering must be done with one individual per population, but population_size is {}!\n\n", dim_); exit(1);}
+    else if(temp_hi_ != temp_lo_ and dim_ != 1) {fmt::print("ERROR! Parallel tempering must be done with one individual per population, but population_size is {}!\n\n", dim_); exit(1);}
     
-    if(temp_i_ != temp_f_) {
+    if(temp_hi_ != temp_lo_) {
         for(int i=1 ; i<n_mut_ ; i++) {probs_(i) = 1.;}
     }
 }
@@ -378,7 +378,7 @@ void TSP :: Mutations() {
     Population old;
     double acc;
     for(int j=0 ; j<n_mut_ ; j++) {                 // perform all the mutations ...
-        if(temp_i_ != temp_f_) {old = pop_;}
+        if(temp_hi_ != temp_lo_) {old = pop_;}
         for(int i=0 ; i<dim_ ; i++) {               // ... on all population elements ...
             if(rnd_->Rannyu() < probs_(j)) {        // ... each one with its own probability
                 if(j == 0) {if(dim_ > 1) {pop_.Crossover(i);}}
@@ -389,7 +389,7 @@ void TSP :: Mutations() {
                 else {fmt::print("ERROR! Unknown mutation!\n\n"); exit(1);}
             }
         }
-        if(temp_i_ != temp_f_ and j != 0) {         // parallel tempering acceptance condition
+        if(temp_hi_ != temp_lo_ and j != 0) {         // parallel tempering acceptance condition
             pop_.Losses();
             for(int i=0 ; i<dim_ ; i++) {
                 acc = min(1., exp(-(pop_[i].GetLoss() - old[i].GetLoss()) / temp_));
