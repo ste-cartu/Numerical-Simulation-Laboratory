@@ -181,15 +181,13 @@ int System :: pbc(int i){ // Enforce periodic boundary conditions for spins
 
 void System :: initialize(const string path, const string rnd_path){ // Initialize the System object according to the content of the input files in the ../INPUT/ directory
 
-  int p1, p2; // Read from ../INPUT/Primes a pair of numbers to be used to initialize the RNG
+  int p1, p2; // Read from rnd_path/primes64001.in a pair of numbers to be used to initialize the RNG
   ifstream Primes(rnd_path + "primes64001.in");
-  //ifstream Primes("../../Libraries/RandomGen/primes64001.in");
   if(!Primes.is_open()) {fmt::print("PROBLEM: unable to open primes64001.in!\n\n");}
   Primes >> p1 >> p2 ;
   Primes.close();
   int seed[4]; // Read the seed of the RNG
   ifstream Seed(rnd_path + "seed.in");
-  //ifstream Seed("../../Libraries/RandomGen/seed.in");
   if(!Seed.is_open()) {fmt::print("PROBLEM: unable to open seed.in!\n");}
   Seed >> seed[0] >> seed[1] >> seed[2] >> seed[3];
   _rnd.SetRandom(seed,p1,p2);
