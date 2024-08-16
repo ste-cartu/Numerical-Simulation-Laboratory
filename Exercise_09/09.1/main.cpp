@@ -19,7 +19,6 @@ int main() {
     salesman_square.Init();
     int n_cities = salesman_circle.GetLen();
     int pop_size = salesman_circle.GetDim();
-    int dist_ord = salesman_circle.GetNorm();
     int n_gens = salesman_circle.GetNGens();
 
     salesman_circle.SetType("circle");
