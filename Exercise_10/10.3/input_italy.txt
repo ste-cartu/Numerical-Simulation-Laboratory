@@ -1,0 +1,36 @@
+problem_type		italy
+cities_number		110
+distance_order		2
+selection_power		6
+population_size  	1
+generations_number	40000
+mutations_number	5
+crossover_prob		0.
+pair_permut_prob	1.
+block_permut_prob	1.
+shift_prob		1.
+inversion_prob		1.
+highest_temp		0.8
+lowest_temp		0.01
+
+ENDINPUT
+
+
+
+POSSIBLE PARAMETERS:
+
+problem_type
+cities_number
+distance_order
+selection_power
+population_size
+generations_number
+migration_number
+mutations_number
+crossover_prob
+pair_permut_prob
+block_permut_prob
+shift_prob
+inversion_prob
+highest_temp
+lowest_temp

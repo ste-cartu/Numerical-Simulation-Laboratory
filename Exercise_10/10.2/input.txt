@@ -31,3 +31,5 @@ pair_permut_prob
 block_permut_prob
 shift_prob
 inversion_prob
+highest_temp
+lowest_temp

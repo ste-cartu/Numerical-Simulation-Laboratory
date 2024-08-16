@@ -1,4 +1,4 @@
- cities_number		34
+cities_number		34
 distance_order		2
 selection_power		6
 population_size  	300
@@ -30,3 +30,5 @@ pair_permut_prob
 block_permut_prob
 shift_prob
 inversion_prob
+highest_temp
+lowest_temp
