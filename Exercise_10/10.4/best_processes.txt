@@ -1,3 +1,3 @@
-Best circle loss: 20.40475
-Best square loss: 9.09367
-Best italy loss: 199.22339
+Best circle loss: 18.89118
+Best square loss: 9.59993
+Best italy loss: 176.77897

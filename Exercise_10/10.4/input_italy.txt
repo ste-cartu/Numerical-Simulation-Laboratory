@@ -3,7 +3,7 @@ cities_number		110
 distance_order		2
 selection_power		6
 population_size  	8
-generations_number	500
+generations_number	40000
 migration_number	0
 mutations_number	5
 crossover_prob		0.80
