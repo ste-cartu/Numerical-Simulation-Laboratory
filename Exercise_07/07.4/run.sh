@@ -18,6 +18,7 @@ do
         echo
         echo "––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––"
         echo "${phase} - ${type}"
+        make
         ./main ${type} ${phase}
         echo
     done
