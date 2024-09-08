@@ -5,7 +5,7 @@ SIDE =      3.68403     3.68403     3.68403
 R_CUT = 0
 DELTA = 0
 NBLOCKS = 100
-NSTEPS = 1000
+NSTEPS = 10000
 Reading input completed!
 System initialized!
 Reading properties completed!

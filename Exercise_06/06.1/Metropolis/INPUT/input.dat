@@ -6,6 +6,6 @@ RHO                    1.0
 R_CUT                  0.0
 DELTA                  0.0
 NBLOCKS	       	       100
-NSTEPS		       1000
+NSTEPS		       10000
 
 ENDINPUT
