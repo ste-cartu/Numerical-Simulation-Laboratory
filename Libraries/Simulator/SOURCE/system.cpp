@@ -309,7 +309,7 @@ void System :: initialize_velocities(const string path){
     }
     sumv2 /= double(_npart);
     scalef = sqrt(3.0 * _temp / sumv2);   // velocity scale factor 
-    for (int i=0; i<_npart; i++){
+    for (int i=0; i<_npart; i++){ 
       _particle(i).setvelocity(0, vx(i)*scalef);
       _particle(i).setvelocity(1, vy(i)*scalef);
       _particle(i).setvelocity(2, vz(i)*scalef);
@@ -671,7 +671,7 @@ void System :: averages(int blk, const string path){
     average  = _average(_index_penergy);
     sum_average = _global_av(_index_penergy);
     sum_ave2 = _global_av2(_index_penergy);
-    coutf << blk 
+    coutf << blk << scientific
           << "," << average
           << "," << sum_average/double(blk)
           << "," << this->error(sum_average, sum_ave2, blk) << endl;
@@ -683,7 +683,7 @@ void System :: averages(int blk, const string path){
     average  = _average(_index_kenergy);
     sum_average = _global_av(_index_kenergy);
     sum_ave2 = _global_av2(_index_kenergy);
-    coutf << blk
+    coutf << blk << scientific
           << "," << average
           << "," << sum_average/double(blk)
           << "," << this->error(sum_average, sum_ave2, blk) << endl;
@@ -695,7 +695,7 @@ void System :: averages(int blk, const string path){
     average  = _average(_index_tenergy);
     sum_average = _global_av(_index_tenergy);
     sum_ave2 = _global_av2(_index_tenergy);
-    coutf << blk
+    coutf << blk << scientific
           << "," << average
           << "," << sum_average/double(blk)
           << "," << this->error(sum_average, sum_ave2, blk) << endl;
@@ -707,7 +707,7 @@ void System :: averages(int blk, const string path){
     average  = _average(_index_temp);
     sum_average = _global_av(_index_temp);
     sum_ave2 = _global_av2(_index_temp);
-    coutf << blk
+    coutf << blk << scientific
           << "," << average
           << "," << sum_average/double(blk)
           << "," << this->error(sum_average, sum_ave2, blk) << endl;
@@ -719,7 +719,7 @@ void System :: averages(int blk, const string path){
     average  = _average(_index_pressure);
     sum_average = _global_av(_index_pressure);
     sum_ave2 = _global_av2(_index_pressure);
-    coutf << blk
+    coutf << blk << scientific
           << "," << average
           << "," << sum_average/double(blk)
           << "," << this->error(sum_average, sum_ave2, blk) << endl;
@@ -739,14 +739,14 @@ void System :: averages(int blk, const string path){
         average = _average(_index_gofr + i);
         sum_average = _global_av(_index_gofr + i);
         sum_ave2 = _global_av2(_index_gofr + i);
-        coutf << i+1
+        coutf << i+1 << scientific
               << "," << double(i)*_bin_size
               << "," << sum_average/double(blk)
               << "," << this->error(sum_average, sum_ave2, blk) << endl;
       }
     }
 
-    coutf2 << blk
+    coutf2 << blk << scientific
           << "," << sum / double(_n_bins)
           << "," << this->error(sum, sum2, _n_bins) << endl;
     coutf.close();
@@ -758,7 +758,7 @@ void System :: averages(int blk, const string path){
     average  = _average(_index_magnet);
     sum_average = _global_av(_index_magnet);
     sum_ave2 = _global_av2(_index_magnet);
-    coutf << blk
+    coutf << blk << scientific
           << "," << average
           << "," << sum_average/double(blk)
           << "," << this->error(sum_average, sum_ave2, blk) << endl;
@@ -770,7 +770,7 @@ void System :: averages(int blk, const string path){
     average  = _average(_index_cv);
     sum_average = _global_av(_index_cv);
     sum_ave2 = _global_av2(_index_cv);
-    coutf << blk
+    coutf << blk << scientific
           << "," << average
           << "," << sum_average/double(blk)
           << "," << this->error(sum_average, sum_ave2, blk) << endl;
@@ -782,7 +782,7 @@ void System :: averages(int blk, const string path){
     average  = _average(_index_chi);
     sum_average = _global_av(_index_chi);
     sum_ave2 = _global_av2(_index_chi);
-    coutf << blk
+    coutf << blk << scientific
           << "," << average
           << "," << sum_average/double(blk)
           << "," << this->error(sum_average, sum_ave2, blk) << endl;
@@ -793,7 +793,7 @@ void System :: averages(int blk, const string path){
   coutf.open(path + "OUTPUT/acceptance.csv",ios::app);
   if(_nattempts > 0) fraction = double(_naccepted)/double(_nattempts);
   else fraction = 0.0; 
-  coutf << blk << "," << fraction << endl;
+  coutf << blk << "," << scientific << fraction << endl;
   coutf.close();
   
   return;
@@ -807,31 +807,31 @@ void System :: instantaneous(int extr, const string path){
   // POTENTIAL ENERGY //////////////////////////////////////////////////////////
   if (_measure_penergy){
     coutf.open(path + "OUTPUT/potential_energy.csv",ios::app);
-    coutf << extr << "," << _measurement(_index_penergy) << endl;
+    coutf << extr << "," << scientific << _measurement(_index_penergy) << endl;
     coutf.close();
   }
   // KINETIC ENERGY ////////////////////////////////////////////////////////////
   if (_measure_kenergy){
     coutf.open(path + "OUTPUT/kinetic_energy.csv",ios::app);
-    coutf << extr << "," << _measurement(_index_kenergy) << endl;
+    coutf << extr << "," << scientific << _measurement(_index_kenergy) << endl;
     coutf.close();
   }
   // TOTAL ENERGY //////////////////////////////////////////////////////////////
   if (_measure_tenergy){
     coutf.open(path + "OUTPUT/total_energy.csv",ios::app);
-    coutf << extr << "," << _measurement(_index_tenergy) << endl;
+    coutf << extr << "," << scientific << _measurement(_index_tenergy) << endl;
     coutf.close();
   }
   // TEMPERATURE ///////////////////////////////////////////////////////////////
   if (_measure_temp){
     coutf.open(path + "OUTPUT/temperature.csv",ios::app);
-    coutf << extr << "," << _measurement(_index_temp) << endl;
+    coutf << extr << "," << scientific << _measurement(_index_temp) << endl;
     coutf.close();
   }
   // PRESSURE //////////////////////////////////////////////////////////////////
   if (_measure_pressure){
     coutf.open(path + "OUTPUT/pressure.csv",ios::app);
-    coutf << extr << "," << _measurement(_index_pressure) << endl;
+    coutf << extr << "," << scientific << _measurement(_index_pressure) << endl;
     coutf.close();
   }
   // GOFR //////////////////////////////////////////////////////////////////////
@@ -840,26 +840,26 @@ void System :: instantaneous(int extr, const string path){
     for(int i=0; i<_n_bins; i++){ // Normalising the radial distribution function
       double dV = (4.0/3.0) * M_PI * (pow(static_cast<double>(i+1) * _bin_size, 3) - pow(static_cast<double>(i) * _bin_size, 3)); // Volume shell
       _measurement(_index_gofr + i) /= ( static_cast<double>(_npart) * _rho * dV);
-      coutf << i+1 << "," << double(i)*_bin_size << "," << _measurement(_index_gofr + i) << endl;
+      coutf << i+1 << "," << scientific << double(i)*_bin_size << "," << _measurement(_index_gofr + i) << endl;
     }
     coutf.close();
   }
   // MAGNETIZATION /////////////////////////////////////////////////////////////
   if (_measure_magnet){
     coutf.open(path + "OUTPUT/magnetization.csv",ios::app);
-    coutf << extr << "," << _measurement(_index_magnet) << endl;
+    coutf << extr << "," << scientific << _measurement(_index_magnet) << endl;
     coutf.close();
   }
   // SPECIFIC HEAT ///////////////////////////////////////////////////////////// TO BE FIXED
   if (_measure_cv){
     coutf.open(path + "OUTPUT/specific_heat.csv",ios::app);
-    coutf << extr << "," << _measurement(_index_cv) << endl;
+    coutf << extr << "," << scientific << _measurement(_index_cv) << endl;
     coutf.close();
   }
   // SUSCEPTIBILITY ////////////////////////////////////////////////////////////
   if (_measure_chi){
     coutf.open(path + "OUTPUT/susceptibility.csv",ios::app);
-    coutf << extr << "," << _measurement(_index_chi) << endl;
+    coutf << extr << "," << scientific << _measurement(_index_chi) << endl;
     coutf.close();
   }
   double fraction;
@@ -867,7 +867,7 @@ void System :: instantaneous(int extr, const string path){
   coutf.open(path + "OUTPUT/acceptance.csv",ios::app);
   if(_nattempts > 0) fraction = double(_naccepted)/double(_nattempts);
   else fraction = 0.0; 
-  coutf << extr << "," << fraction << endl;
+  coutf << extr << "," << scientific << fraction << endl;
   coutf.close();
   
   return;
